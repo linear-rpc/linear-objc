@@ -1,0 +1,92 @@
+diff --git a/test/optional_test.cpp b/test/optional_test.cpp
+index 5d0e975..fc79055 100644
+--- a/test/optional_test.cpp
++++ b/test/optional_test.cpp
+@@ -7,7 +7,7 @@
+ TEST(OptionalTest, ConstructorAndConversionOperatorWorks) {
+   linear::type::optional<int> o1;
+   EXPECT_FALSE(bool(o1));
+-  linear::type::optional<int> o2( (linear::type::nil()) );
++  linear::type::optional<int> o2( (linear::type::nil_()) );
+   EXPECT_FALSE(bool(o2));
+   linear::type::optional<int> o3(1);
+   EXPECT_TRUE(bool(o3));
+@@ -34,16 +34,16 @@ TEST(OptionalTest, AssignmentAndIndirectionOperatorWorks) {
+   EXPECT_TRUE(bool(o1));
+   EXPECT_EQ(1, *o1);
+ 
+-  o1 = linear::type::nil();
++  o1 = linear::type::nil_();
+   EXPECT_FALSE(bool(o1));
+ 
+-  o1 = linear::type::nil();
+-  o2 = linear::type::nil();
++  o1 = linear::type::nil_();
++  o2 = linear::type::nil_();
+   o1 = o2;
+   EXPECT_FALSE(bool(o1));
+ 
+   o1 = 1;
+-  o2 = linear::type::nil();
++  o2 = linear::type::nil_();
+   o1 = o2;
+   EXPECT_FALSE(bool(o1));
+ 
+@@ -80,16 +80,16 @@ TEST(OptionalTest, ValueOrMethodWorks) {
+ 
+ TEST(OptionalTest, EqualToOperatorWorks) {
+   linear::type::optional<int> o1;
+-  EXPECT_TRUE(o1 == linear::type::nil());
+-  EXPECT_FALSE(linear::type::nil() == o1);
++  EXPECT_TRUE(o1 == linear::type::nil_());
++  EXPECT_FALSE(linear::type::nil_() == o1);
+   EXPECT_FALSE(o1 == 1);
+   // EXPECT_FALSE(o1 == 2);
+   EXPECT_FALSE(1 == o1);
+   // EXPECT_FALSE(2 == o1);
+ 
+   linear::type::optional<int> o2(1);
+-  EXPECT_FALSE(o2 == linear::type::nil());
+-  EXPECT_FALSE(linear::type::nil() == o2);
++  EXPECT_FALSE(o2 == linear::type::nil_());
++  EXPECT_FALSE(linear::type::nil_() == o2);
+   EXPECT_TRUE(o2 == 1);
+   EXPECT_FALSE(o2 == 2);
+   EXPECT_TRUE(1 == o2);
+@@ -107,14 +107,14 @@ TEST(OptionalTest, EqualToOperatorWorks) {
+ 
+ TEST(OptionalTest, LessThanOperatorWorks) {
+   linear::type::optional<int> o1;
+-  EXPECT_TRUE(o1 < linear::type::nil());
+-  EXPECT_FALSE(linear::type::nil() < o1);
++  EXPECT_TRUE(o1 < linear::type::nil_());
++  EXPECT_FALSE(linear::type::nil_() < o1);
+   EXPECT_TRUE(o1 < 1);
+   // EXPECT_TRUE(o1 < 2);
+ 
+   linear::type::optional<int> o2(1);
+-  EXPECT_FALSE(o2 < linear::type::nil());
+-  EXPECT_TRUE(linear::type::nil() < o2);
++  EXPECT_FALSE(o2 < linear::type::nil_());
++  EXPECT_TRUE(linear::type::nil_() < o2);
+   EXPECT_FALSE(o2 < 1);
+   EXPECT_TRUE(o2 < 2);
+ 
+@@ -134,7 +134,7 @@ TEST(OptionalTest, SerializeWorks) {
+   msgpack::pack(sbuf1, o1);
+ 
+   msgpack::sbuffer sbuf2;
+-  msgpack::pack(sbuf2, linear::type::nil());
++  msgpack::pack(sbuf2, linear::type::nil_());
+ 
+   EXPECT_EQ(sbuf1.size(), sbuf2.size());
+   EXPECT_EQ(0, memcmp(sbuf1.data(), sbuf2.data(), sbuf1.size()));
+@@ -152,7 +152,7 @@ TEST(OptionalTest, SerializeWorks) {
+ 
+ TEST(OptionalTest, DeserializeWorks) {
+   msgpack::sbuffer sbuf1;
+-  msgpack::pack(sbuf1, linear::type::nil());
++  msgpack::pack(sbuf1, linear::type::nil_());
+ 
+   msgpack::unpacked result1;
+   msgpack::unpack(&result1, sbuf1.data(), sbuf1.size());

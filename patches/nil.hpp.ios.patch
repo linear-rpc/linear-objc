@@ -1,0 +1,62 @@
+diff --git a/include/msgpack/adaptor/nil.hpp b/include/msgpack/adaptor/nil.hpp
+index 2f99f1a..e99f5f8 100644
+--- a/include/msgpack/adaptor/nil.hpp
++++ b/include/msgpack/adaptor/nil.hpp
+@@ -29,39 +29,39 @@ MSGPACK_API_VERSION_NAMESPACE(v1) {
+ 
+ namespace type {
+ 
+-struct nil { };
++struct nil_ { };
+ 
+ }  // namespace type
+ 
+ namespace adaptor {
+ 
+ template <>
+-struct convert<type::nil> {
+-    msgpack::object const& operator()(msgpack::object const& o, type::nil&) const {
++struct convert<type::nil_> {
++    msgpack::object const& operator()(msgpack::object const& o, type::nil_&) const {
+         if(o.type != msgpack::type::NIL) { throw msgpack::type_error(); }
+         return o;
+     }
+ };
+ 
+ template <>
+-struct pack<type::nil> {
++struct pack<type::nil_> {
+     template <typename Stream>
+-    msgpack::packer<Stream>& operator()(msgpack::packer<Stream>& o, const type::nil&) const {
++    msgpack::packer<Stream>& operator()(msgpack::packer<Stream>& o, const type::nil_&) const {
+         o.pack_nil();
+         return o;
+     }
+ };
+ 
+ template <>
+-struct object<type::nil> {
+-    void operator()(msgpack::object& o, type::nil) const {
++struct object<type::nil_> {
++    void operator()(msgpack::object& o, type::nil_) const {
+         o.type = msgpack::type::NIL;
+     }
+ };
+ 
+ template <>
+-struct object_with_zone<type::nil> {
+-    void operator()(msgpack::object::with_zone& o, type::nil v) const {
++struct object_with_zone<type::nil_> {
++    void operator()(msgpack::object::with_zone& o, type::nil_ v) const {
+         static_cast<msgpack::object&>(o) << v;
+     }
+ };
+@@ -71,7 +71,7 @@ struct object_with_zone<type::nil> {
+ template <>
+ inline void msgpack::object::as<void>() const
+ {
+-    msgpack::type::nil v;
++    msgpack::type::nil_ v;
+     convert(v);
+ }
+ 

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+if [ x`uname` = x"Darwin" ]; then
+    LIBTOOLIZE="glibtoolize --force --copy"
+else
+    LIBTOOLIZE="libtoolize --force --copy"
+fi
+
+# do patch: s/type::nil/type::nil_/g
+# msgpack/type/nil.hpp
+patch_file="`pwd`/patches/nil.hpp.ios.patch"
+(cd deps/linear-cpp/deps/msgpack/include/msgpack/adaptor; patch -N < $patch_file)
+# linear/any.h
+patch_file="`pwd`/patches/any.h.ios.patch"
+(cd deps/linear-cpp/include/linear; patch -N < $patch_file)
+# linear/nil.h
+patch_file="`pwd`/patches/nil.h.ios.patch"
+(cd deps/linear-cpp/include/linear; patch -N < $patch_file)
+# linear/optional.h
+patch_file="`pwd`/patches/optional.h.ios.patch"
+(cd deps/linear-cpp/include/linear; patch -N < $patch_file)
+# test/optional_test.cpp
+patch_file="`pwd`/patches/optional_test.cpp.ios.patch"
+(cd deps/linear-cpp/test; patch -N < $patch_file)
+
+# break on error
+set -ex
+
+# linear-cpp
+(cd deps/linear-cpp; sh ./bootstrap >/dev/null 2>&1)
+
+# linear-ios
+$LIBTOOLIZE >/dev/null 2>&1
+aclocal -I m4
+autoheader
+automake --foreign --add-missing --copy
+autoconf

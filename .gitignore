@@ -1,0 +1,25 @@
+# backup
+*~
+
+# autotools
+Makefile
+!doc/Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.*
+configure
+libtool
+.deps/
+m4/
+stamp-h1
+
+# objects
+.libs/
+*.la
+*.lo
+*.a
+*.o
+
+# created files
+workspace/

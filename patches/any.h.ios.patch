@@ -1,0 +1,13 @@
+diff --git a/include/linear/any.h b/include/linear/any.h
+index aaeec63..96e99e2 100644
+--- a/include/linear/any.h
++++ b/include/linear/any.h
+@@ -29,7 +29,7 @@ class LINEAR_EXTERN any {
+   any(const any& any) : zone_() {
+     copy_msgpack_object(any.object_, &object_, zone_);
+   }
+-  any(const linear::type::nil&) : zone_(), object_() {
++  any(const linear::type::nil_&) : zone_(), object_() {
+   }
+   any(const msgpack::object& object) : zone_() {
+     copy_msgpack_object(object, &object_, zone_);
