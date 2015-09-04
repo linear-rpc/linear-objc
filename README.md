@@ -30,7 +30,7 @@ Do after above, libraries and includes are installed into workspace/universal
 $ cd /path/to/your_project
 $ cat Podfile
 platform :ios, '7.0'
-pod 'Linear', :git => 'https://github.com/linear-rpc/linear-ios'
+pod 'Linear', :git => 'https://github.com/linear-rpc/linear-objc'
 </pre>
   2. Install Pods into your project
 <pre class="fragment">
