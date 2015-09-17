@@ -1,16 +1,25 @@
 diff --git a/include/msgpack/adaptor/nil.hpp b/include/msgpack/adaptor/nil.hpp
-index 2f99f1a..e99f5f8 100644
+index 607f767..cac2162 100644
 --- a/include/msgpack/adaptor/nil.hpp
 +++ b/include/msgpack/adaptor/nil.hpp
-@@ -29,39 +29,39 @@ MSGPACK_API_VERSION_NAMESPACE(v1) {
+@@ -29,13 +29,13 @@ MSGPACK_API_VERSION_NAMESPACE(v1) {
  
  namespace type {
  
 -struct nil { };
 +struct nil_ { };
  
- }  // namespace type
+-inline bool operator<(nil const& lhs, nil const& rhs) {
++inline bool operator<(nil_ const& lhs, nil_ const& rhs) {
+     return &lhs < &rhs;
+ }
  
+-inline bool operator==(nil const& lhs, nil const& rhs) {
++inline bool operator==(nil_ const& lhs, nil_ const& rhs) {
+     return &lhs == &rhs;
+ }
+ 
+@@ -44,32 +44,32 @@ inline bool operator==(nil const& lhs, nil const& rhs) {
  namespace adaptor {
  
  template <>
@@ -51,7 +60,7 @@ index 2f99f1a..e99f5f8 100644
          static_cast<msgpack::object&>(o) << v;
      }
  };
-@@ -71,7 +71,7 @@ struct object_with_zone<type::nil> {
+@@ -79,7 +79,7 @@ struct object_with_zone<type::nil> {
  template <>
  inline void msgpack::object::as<void>() const
  {
