@@ -31,7 +31,9 @@ done
 do_configure() {
     TARGET_ARCH=$1
     CFLAGS="${COMMON_CFLAGS}"
-
+    if [ "`$XCRUN -sdk iphoneos --show-sdk-version`" == "9.0" ]; then
+        CFLAGS="-fembed-bitcode ${CFLAGS}"
+    fi
     case ${TARGET_ARCH} in
 	armv7)
 	    TARGET_HOST_OPTION="--host=arm-apple-darwin"
@@ -49,12 +51,12 @@ do_configure() {
 	    CFLAGS="-arch arm64 ${CFLAGS}"
 	    ;;
 	i386)
-	    TARGET_HOST_OPTION=
+	    TARGET_HOST_OPTION="--host=i386-apple-darwin"
 	    SDK_DIR="`$XCRUN -sdk iphonesimulator --show-sdk-path`"
 	    CFLAGS="-arch i386 ${CFLAGS}"
 	    ;;
 	x86_64)
-	    TARGET_HOST_OPTION=
+	    TARGET_HOST_OPTION="--host=x86_64-apple-darwin"
 	    SDK_DIR="`$XCRUN -sdk iphonesimulator --show-sdk-path`"
 	    CFLAGS="-arch x86_64 ${CFLAGS}"
 	    ;;
