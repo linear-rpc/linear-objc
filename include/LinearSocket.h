@@ -30,6 +30,16 @@ typedef NS_ENUM(NSInteger, LinearSocketState) {
   LinearSocketStateConnected,
 };
 
+#pragma mark - Keep Alive Type
+
+/** Keep Alive Types */
+typedef NS_ENUM(NSInteger, LinearKeepAliveType) {
+  /** KEEPALIVE - TCP */
+  LinearKeepAliveTCP,
+  /** KEEPALIVE - WebSocket */
+  LinearKeepAliveWS,
+};
+
 #pragma mark - Socket
 
 /**
@@ -79,5 +89,14 @@ typedef NS_ENUM(NSInteger, LinearSocketState) {
  * @see http://stackoverflow.com/questions/9214326/tcp-keepintvl-and-tcp-keepcnt-not-defined-in-tcp-h-in-ios-sdk
  */
 - (BOOL)keepAlive:(NSUInteger)interval retry:(NSUInteger)retry;
+
+/**
+ * Interface to set SO_KEEPALIVE or WebSocket KeepAlive
+ * @param interval interval time(second) to send tcp-keepalive
+ * @param retry retry counter
+ * @param type KEEPALIVE(TCP) or KEEPALIVE(WebSocket)
+ * @return succeed to set or not
+ */
+- (BOOL)keepAlive:(NSUInteger)interval retry:(NSUInteger)retry type:(LinearKeepAliveType)type;
 
 @end

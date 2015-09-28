@@ -122,6 +122,22 @@
   return YES;
 }
 
+- (BOOL)keepAlive:(NSUInteger)interval retry:(NSUInteger)retry type:(LinearKeepAliveType)type {
+  linear::Socket::KeepAliveType t = linear::Socket::KEEPALIVE_TCP;
+  switch(type) {
+  case LinearKeepAliveWS:
+    t = linear::Socket::KEEPALIVE_WS;
+    break;
+  default:
+    break;
+  }
+  linear::Error err = socket.KeepAlive(interval, retry, t);
+  if (err.Code() != linear::LNR_OK) {
+    return NO;
+  }
+  return YES;
+}
+
 - (LinearError *)send:(LinearMessage *)message {
   switch (message.type) {
   case LinearMessageTypeRequest:
