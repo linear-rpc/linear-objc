@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([linear-objc], [0.5.1], [https://github.com/linear-rpc/linear-objc])
+AC_INIT([linear-objc], [0.5.2], [https://github.com/linear-rpc/linear-objc])
 AC_CONFIG_AUX_DIR(m4)
 AC_CONFIG_MACRO_DIR(m4)
 AC_CONFIG_SRCDIR([include/LinearClient.h])
