@@ -85,7 +85,7 @@ private:
 };
 
 @interface LinearClient() {
-  cppHandler* handler;
+  linear::shared_ptr<cppHandler> handler;
 }
 @end
 
@@ -94,7 +94,7 @@ private:
 - (instancetype)init {
   if (self = [super init]) {
     if (!handler) {
-      handler = new cppHandler(self);
+      handler = linear::shared_ptr<cppHandler>(new cppHandler(self));
     }
     _queue = [[NSOperationQueue alloc] init];
   }
@@ -104,7 +104,7 @@ private:
 - (instancetype)initWithDelegateQueue:(NSOperationQueue *)queue {
   if (self = [super init]) {
     if (!handler) {
-      handler = new cppHandler(self);
+      handler = linear::shared_ptr<cppHandler>(new cppHandler(self));
     }
     _queue = queue;
   }
@@ -112,14 +112,10 @@ private:
 }
 
 - (void)dealloc {
-  if (handler) {
-    delete handler;
-    handler = NULL;
-  }
 }
 
-- (const linear::Handler&)getHandler {
-  return *handler;
+- (const linear::shared_ptr<cppHandler>&)getHandler {
+  return handler;
 }
 
 - (void)onConnect:(const linear::Socket&)cppSocket {

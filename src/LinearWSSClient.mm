@@ -11,7 +11,7 @@
 
 @interface LinearClient(LinearWSSClientExtern)
 
-- (const linear::Handler&)getHandler;
+- (const linear::shared_ptr<linear::Handler>&)getHandler;
 
 @end
 

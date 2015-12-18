@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Linear'
-  s.version = '0.5.3'
+  s.version = '0.5.4'
   s.summary = 'a msgpack-rpc implementation for Objective-C'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/linear-rpc/linear-objc'
