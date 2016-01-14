@@ -1,8 +1,8 @@
 diff --git a/include/linear/optional.h b/include/linear/optional.h
-index f8c49a7..81bbd12 100644
+index c800f8a..2a12045 100644
 --- a/include/linear/optional.h
 +++ b/include/linear/optional.h
-@@ -27,7 +27,7 @@ class optional {
+@@ -30,7 +30,7 @@ class LINEAR_EXTERN optional {
   public:
    optional() : initialized_(false) {
    }
@@ -11,7 +11,7 @@ index f8c49a7..81bbd12 100644
    }
    optional(const optional<T>& other) {
      initialized_ = other.initialized_;
-@@ -40,7 +40,7 @@ class optional {
+@@ -43,7 +43,7 @@ class LINEAR_EXTERN optional {
    ~optional() {
    }
  
@@ -20,7 +20,7 @@ index f8c49a7..81bbd12 100644
      initialized_ = false;
      return *this;
    }
-@@ -112,7 +112,7 @@ class optional {
+@@ -115,7 +115,7 @@ class LINEAR_EXTERN optional {
      if (initialized_) {
        pk.pack(value_);
      } else {
@@ -29,7 +29,7 @@ index f8c49a7..81bbd12 100644
      }
    }
    void msgpack_unpack(msgpack::object o) {
-@@ -263,19 +263,19 @@ bool operator<(const linear::type::optional<T>& lhs, const linear::type::optiona
+@@ -268,19 +268,19 @@ bool operator<(const linear::type::optional<T>& lhs, const linear::type::optiona
  }
  
  template <class T>
@@ -38,8 +38,8 @@ index f8c49a7..81bbd12 100644
    return !bool(opt);
  }
  template <class T>
--bool operator==(linear::type::nil, const linear::type::optional<T>& opt) {
-+bool operator==(linear::type::nil_, const linear::type::optional<T>& opt) {
+-bool operator==(linear::type::nil, const linear::type::optional<T>&) {
++bool operator==(linear::type::nil_, const linear::type::optional<T>&) {
    return false;
  }
  template <class T>
