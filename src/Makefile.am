@@ -35,6 +35,8 @@ liblinear_objc_la_SOURCES = \
 
 if WITH_SSL
 liblinear_objc_la_SOURCES += \
+	LinearSSLContext.m \
+	LinearX509Certificate.m \
 	LinearSSLSocket.mm \
 	LinearSSLClient.mm \
 	LinearWSSSocket.mm \

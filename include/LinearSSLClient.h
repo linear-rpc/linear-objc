@@ -1,14 +1,21 @@
 #import "LinearClient.h"
+#import "LinearSSLContext.h"
 #import "LinearSSLSocket.h"
 
 #pragma mark - SSLClient
 
 /**
  * SSL Client class
- * @note can use only encrypted transport now.
- * (can't deal any certificates)
  */
 @interface LinearSSLClient : LinearClient
+
+/**
+ * @brief LinearSSLContext
+ *
+ * certificates, CA certificates and privatekey etc.
+ * for connecting.
+ */
+@property (nonatomic, strong) LinearSSLContext *sslctx;
 
 /**
  * get new socket instance

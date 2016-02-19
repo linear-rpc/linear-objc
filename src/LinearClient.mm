@@ -130,9 +130,6 @@ private:
         socket = [[LinearWSSocket alloc] initWithCppSocket:cppSocket];
         break;
 #if defined(WITH_SSL)
-      case linear::Socket::SSL:
-        socket = [[LinearSSLSocket alloc] initWithCppSocket:cppSocket];
-        break;
       case linear::Socket::WSS:
         socket = [[LinearWSSSocket alloc] initWithCppSocket:cppSocket];
         break;

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'LinearWithSSL'
-  s.version = '0.5.6'
+  s.version = '0.5.7'
   s.summary = 'a msgpack-rpc implementation for Objective-C'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/linear-rpc/linear-objc'
@@ -26,6 +26,8 @@ PREPROCESS
     'workspace/universal/include/LinearWSClient.h',
     'workspace/universal/include/LinearWSContext.h',
     'workspace/universal/include/LinearWSSocket.h',
+    'workspace/universal/include/LinearSSLContext.h',
+    'workspace/universal/include/LinearX509Certificate.h',
     'workspace/universal/include/LinearSSLClient.h',
     'workspace/universal/include/LinearSSLSocket.h',
     'workspace/universal/include/LinearWSSClient.h',
