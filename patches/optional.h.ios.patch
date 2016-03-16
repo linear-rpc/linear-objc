@@ -1,5 +1,5 @@
 diff --git a/include/linear/optional.h b/include/linear/optional.h
-index c800f8a..2a12045 100644
+index 62038d8..1e19ca7 100644
 --- a/include/linear/optional.h
 +++ b/include/linear/optional.h
 @@ -30,7 +30,7 @@ class LINEAR_EXTERN optional {
@@ -7,7 +7,7 @@ index c800f8a..2a12045 100644
    optional() : initialized_(false) {
    }
 -  optional(linear::type::nil) : initialized_(false) {
-+  optional(linear::type::nil_) : initialized_(false) {
++  optional(linear::type::nil_t) : initialized_(false) {
    }
    optional(const optional<T>& other) {
      initialized_ = other.initialized_;
@@ -16,7 +16,7 @@ index c800f8a..2a12045 100644
    }
  
 -  optional& operator=(linear::type::nil) {
-+  optional& operator=(linear::type::nil_) {
++  optional& operator=(linear::type::nil_t) {
      initialized_ = false;
      return *this;
    }
@@ -25,31 +25,31 @@ index c800f8a..2a12045 100644
        pk.pack(value_);
      } else {
 -      pk.pack(linear::type::nil());
-+      pk.pack(linear::type::nil_());
++      pk.pack(linear::type::nil_t());
      }
    }
    void msgpack_unpack(msgpack::object o) {
-@@ -268,19 +268,19 @@ bool operator<(const linear::type::optional<T>& lhs, const linear::type::optiona
+@@ -270,19 +270,19 @@ bool operator<(const linear::type::optional<T>& lhs, const linear::type::optiona
  }
  
  template <class T>
 -bool operator==(const linear::type::optional<T>& opt, linear::type::nil) {
-+bool operator==(const linear::type::optional<T>& opt, linear::type::nil_) {
++bool operator==(const linear::type::optional<T>& opt, linear::type::nil_t) {
    return !bool(opt);
  }
  template <class T>
 -bool operator==(linear::type::nil, const linear::type::optional<T>&) {
-+bool operator==(linear::type::nil_, const linear::type::optional<T>&) {
++bool operator==(linear::type::nil_t, const linear::type::optional<T>&) {
    return false;
  }
  template <class T>
 -bool operator<(const linear::type::optional<T>& opt, linear::type::nil) {
-+bool operator<(const linear::type::optional<T>& opt, linear::type::nil_) {
++bool operator<(const linear::type::optional<T>& opt, linear::type::nil_t) {
    return !bool(opt);
  }
  template <class T>
 -bool operator<(linear::type::nil, const linear::type::optional<T>& opt) {
-+bool operator<(linear::type::nil_, const linear::type::optional<T>& opt) {
++bool operator<(linear::type::nil_t, const linear::type::optional<T>& opt) {
    return bool(opt);
  }
  

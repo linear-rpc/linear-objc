@@ -7,12 +7,6 @@ else
 fi
 
 # do patch: s/type::nil/type::nil_/g
-# msgpack/type/nil.hpp
-patch_file="`pwd`/patches/nil.hpp.ios.patch"
-(cd deps/linear-cpp/deps/msgpack/include/msgpack/adaptor; patch -N < $patch_file)
-# msgpack/type/boost/msgpack_variant.hpp
-patch_file="`pwd`/patches/msgpack_variant.hpp.ios.patch"
-(cd deps/linear-cpp/deps/msgpack/include/msgpack/adaptor/boost; patch -N < $patch_file)
 # linear/any.h
 patch_file="`pwd`/patches/any.h.ios.patch"
 (cd deps/linear-cpp/include/linear; patch -N < $patch_file)

@@ -88,7 +88,7 @@ linear::type::any id_to_any(id from) {
   } else if ([from isKindOfClass:[NSNumber class]]) {
     ret = number_to_any((NSNumber*)from);
   } else if ([from isEqual:[NSNull null]] || from == nil) {
-    ret = linear::type::nil_();
+    ret = linear::type::nil_t();
   } else {
     NSLog(@"BUG: unable to convert objc-object");
   }

@@ -1,30 +1,35 @@
 diff --git a/include/linear/nil.h b/include/linear/nil.h
-index d873038..d3ca591 100644
+index cc4acfd..f5027ac 100644
 --- a/include/linear/nil.h
 +++ b/include/linear/nil.h
-@@ -17,20 +17,20 @@ namespace linear {
+@@ -1,6 +1,6 @@
+ /**
+  * @file nil.h
+- * a class definition of linear::type::nil
++ * a class definition of linear::type::nil_t
+  */
+ 
+ #ifndef LINEAR_TYPE_NIL_H_
+@@ -17,18 +17,18 @@ namespace linear {
  namespace type {
  
  /**
 - * @class nil nil.h "linear/nil.h"
-+ * @class nil_ nil.h "linear/nil.h"
++ * @class nil_t nil.h "linear/nil.h"
   * represent nil object
-  * @warning on iOS environment, you need to use nil_() instead of nil().
+  * @warning
+  * on iOS environment, you need to use nil_t() instead of nil().
+  * (patched by linear-objc/bootstrap)
   */
 -class nil {
-+class nil_ {
++class nil_t {
   public:
    /// @cond hidden
 -  nil() {
-+  nil_() {
++  nil_t() {
    }
 -  ~nil() {
-+  ~nil_() {
++  ~nil_t() {
    }
    template <typename Packer>
    void msgpack_pack(Packer& pk) const {
--    pk.pack(msgpack::type::nil());
-+    pk.pack(msgpack::type::nil_());
-   }
-   void msgpack_unpack(msgpack::object o) {
-     if(o.type != msgpack::type::NIL) {
