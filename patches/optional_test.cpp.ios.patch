@@ -1,5 +1,5 @@
 diff --git a/test/optional_test.cpp b/test/optional_test.cpp
-index 3173304..3620240 100644
+index a7fd00d..a47224e 100644
 --- a/test/optional_test.cpp
 +++ b/test/optional_test.cpp
 @@ -7,7 +7,7 @@
@@ -88,5 +88,5 @@ index 3173304..3620240 100644
 -  msgpack::pack(sbuf1, linear::type::nil());
 +  msgpack::pack(sbuf1, linear::type::nil_t());
  
-   msgpack::unpacked result1;
-   msgpack::unpack(&result1, sbuf1.data(), sbuf1.size());
+   msgpack::object_handle result1 = msgpack::unpack(sbuf1.data(), sbuf1.size());
+   msgpack::object obj1 = result1.get();

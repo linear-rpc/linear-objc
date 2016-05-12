@@ -1,8 +1,8 @@
 diff --git a/include/linear/optional.h b/include/linear/optional.h
-index 62038d8..1e19ca7 100644
+index 7165e1c..5bcc3e5 100644
 --- a/include/linear/optional.h
 +++ b/include/linear/optional.h
-@@ -30,7 +30,7 @@ class LINEAR_EXTERN optional {
+@@ -28,7 +28,7 @@ class optional {
   public:
    optional() : initialized_(false) {
    }
@@ -11,7 +11,7 @@ index 62038d8..1e19ca7 100644
    }
    optional(const optional<T>& other) {
      initialized_ = other.initialized_;
-@@ -43,7 +43,7 @@ class LINEAR_EXTERN optional {
+@@ -41,7 +41,7 @@ class optional {
    ~optional() {
    }
  
@@ -20,7 +20,7 @@ index 62038d8..1e19ca7 100644
      initialized_ = false;
      return *this;
    }
-@@ -115,7 +115,7 @@ class LINEAR_EXTERN optional {
+@@ -113,7 +113,7 @@ class optional {
      if (initialized_) {
        pk.pack(value_);
      } else {
@@ -29,7 +29,7 @@ index 62038d8..1e19ca7 100644
      }
    }
    void msgpack_unpack(msgpack::object o) {
-@@ -270,19 +270,19 @@ bool operator<(const linear::type::optional<T>& lhs, const linear::type::optiona
+@@ -268,19 +268,19 @@ bool operator<(const linear::type::optional<T>& lhs, const linear::type::optiona
  }
  
  template <class T>

@@ -10,6 +10,9 @@ fi
 # linear/any.h
 patch_file="`pwd`/patches/any.h.ios.patch"
 (cd deps/linear-cpp/include/linear; patch -N < $patch_file)
+# test/any_test.cpp
+patch_file="`pwd`/patches/any_test.cpp.ios.patch"
+(cd deps/linear-cpp/test; patch -N < $patch_file)
 # linear/nil.h
 patch_file="`pwd`/patches/nil.h.ios.patch"
 (cd deps/linear-cpp/include/linear; patch -N < $patch_file)

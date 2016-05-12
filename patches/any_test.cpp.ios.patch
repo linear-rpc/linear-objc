@@ -1,0 +1,22 @@
+diff --git a/test/any_test.cpp b/test/any_test.cpp
+index a1333c8..77513bc 100644
+--- a/test/any_test.cpp
++++ b/test/any_test.cpp
+@@ -4,7 +4,7 @@
+ 
+ TEST(AnyTest, simple) {
+   {
+-    linear::type::any a1, a2((linear::type::nil()));
++    linear::type::any a1, a2((linear::type::nil_t()));
+     EXPECT_TRUE(a1.is_nil());
+     EXPECT_EQ(linear::type::any::NIL, a1.type);
+     EXPECT_TRUE(a2.is_nil());
+@@ -305,7 +305,7 @@ TEST(AnyTest, msgpack_object) {
+ 
+ TEST(AnyTest, stringify) {
+   {
+-    linear::type::nil n;
++    linear::type::nil_t n;
+     int i = 0;
+     float f = 3.14;
+     std::string s = "string";
