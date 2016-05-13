@@ -31,8 +31,13 @@ done
 do_configure() {
     TARGET_ARCH=$1
     CFLAGS="${COMMON_CFLAGS}"
-    if [ "`$XCRUN -sdk iphoneos --show-sdk-version`" == "9.0" ]; then
-        CFLAGS="-fembed-bitcode ${CFLAGS}"
+    SDK_VERSION=`$XCRUN -sdk iphoneos --show-sdk-version | bc`
+    if [ `echo "$SDK_VERSION >= 9.0" | bc` == 1 ]; then
+	if [ "$TARGET_ARCH" == "i386" -o "$TARGET_ARCH" == "x86_64" ]; then
+	    CFLAGS="${CFLAGS}"
+	else
+            CFLAGS="-fembed-bitcode ${CFLAGS}"
+	fi
     fi
     case ${TARGET_ARCH} in
 	armv7)
