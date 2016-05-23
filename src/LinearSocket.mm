@@ -138,6 +138,10 @@
   return YES;
 }
 
+- (void)setMaxBufferSize:(NSUInteger)limit {
+  socket.SetMaxBufferSize(limit);
+}
+
 - (LinearError *)send:(LinearMessage *)message {
   switch (message.type) {
   case LinearMessageTypeRequest:

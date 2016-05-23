@@ -99,4 +99,10 @@ typedef NS_ENUM(NSInteger, LinearKeepAliveType) {
  */
 - (BOOL)keepAlive:(NSUInteger)interval retry:(NSUInteger)retry type:(LinearKeepAliveType)type;
 
+/**
+ * set {send, recv} MaxBuffer size, default is 8MB
+ * @param limit max limit (byte)
+ */
+- (void)setMaxBufferSize: (NSUInteger)limit;
+
 @end
