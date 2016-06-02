@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([linear-objc], [0.6.6], [https://github.com/linear-rpc/linear-objc])
+AC_INIT([linear-objc], [0.6.7], [https://github.com/linear-rpc/linear-objc])
 AC_CONFIG_AUX_DIR(m4)
 AC_CONFIG_MACRO_DIR(m4)
 AC_CONFIG_SRCDIR([include/LinearClient.h])
@@ -37,12 +37,12 @@ if test "x$with_ssl" = "xyes"; then
    OBJCFLAGS="$OBJCFLAGS -DWITH_SSL -I`pwd`/deps/OpenSSL-for-iPhone"
    OBJCXXFLAGS="$OBJCXXFLAGS -DWITH_SSL -I`pwd`/deps/OpenSSL-for-iPhone"
    LDFLAGS="$LDFLAGS -L`pwd`/deps/OpenSSL-for-iPhone/lib"
-   LIBS="$LIBS -lcrypto -lssl"
+   LIBS="$LIBS -lssl -lcrypto"
 elif test "x${with_ssl}" != "xno"; then
    OBJCFLAGS="$OBJCFLAGS -DWITH_SSL -I$with_ssl/include"
    OBJCXXFLAGS="$OBJCXXFLAGS -DWITH_SSL -I$with_ssl/include"
    LDFLAGS="$LDFLAGS -L$with_ssl/lib"
-   LIBS="$LIBS -lcrypto -lssl"
+   LIBS="$LIBS -lssl -lcrypto"
 fi
 AM_CONDITIONAL([WITH_SSL], [test "x${with_ssl}" != "xno"])
 
