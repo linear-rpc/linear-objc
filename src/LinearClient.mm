@@ -122,6 +122,10 @@ private:
   if ([_delegate respondsToSelector:@selector(onConnect:)]) {
     @autoreleasepool {
       LinearSocket *socket;
+      // change socket buffer size: 9Kb(default) -> 1Mb
+      int sock_bufsiz = 1024 * 1024;
+      cppSocket.SetSockOpt(SOL_SOCKET, SO_SNDBUF, (char *)&sock_bufsiz, sizeof(sock_bufsiz));
+      cppSocket.SetSockOpt(SOL_SOCKET, SO_RCVBUF, (char *)&sock_bufsiz, sizeof(sock_bufsiz));
       switch (cppSocket.GetType()) {
       case linear::Socket::TCP:
         socket = [[LinearTCPSocket alloc] initWithCppSocket:cppSocket];
