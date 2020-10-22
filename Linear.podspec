@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name = 'Linear'
-  s.version = '0.6.11'
+  s.version = '0.7.0'
   s.summary = 'a msgpack-rpc implementation for Objective-C'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/linear-rpc/linear-objc'
-  s.authors = { 'Norio Kobota' => 'Norio.Kobota@jp.sony.com' }
+  s.authors = { 'Masayuki Imanishi' => 'Masayuki.Imanishi@sony.com' }
   s.source = { :git => 'https://github.com/linear-rpc/linear-objc', :submodules => true }
   s.platform = :ios, '7.0'
   s.prepare_command = <<-PREPROCESS
