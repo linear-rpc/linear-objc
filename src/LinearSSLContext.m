@@ -6,7 +6,7 @@
 
 - (instancetype)init {
   if (self = [super init]) {
-    self.method = LinearSSLv23;
+    self.method = LinearTLS;
     self.mode = LinearSSLVerifyPeer;
     self.cert = NULL;
     self.pkey = NULL;

@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([linear-objc], [0.6.10], [https://github.com/linear-rpc/linear-objc])
+AC_INIT([linear-objc], [0.7.0], [https://github.com/linear-rpc/linear-objc])
 AC_CONFIG_AUX_DIR(m4)
 AC_CONFIG_MACRO_DIR(m4)
 AC_CONFIG_SRCDIR([include/LinearClient.h])
@@ -34,9 +34,9 @@ AC_ARG_WITH([ssl],
             [AC_HELP_STRING([--with-ssl], [supports SSL transport by using OpenSSL@<:@default=no@:>@])],
             [with_ssl=$withval], [with_ssl=no])
 if test "x$with_ssl" = "xyes"; then
-   OBJCFLAGS="$OBJCFLAGS -DWITH_SSL -I`pwd`/deps/OpenSSL-for-iPhone"
-   OBJCXXFLAGS="$OBJCXXFLAGS -DWITH_SSL -I`pwd`/deps/OpenSSL-for-iPhone"
-   LDFLAGS="$LDFLAGS -L`pwd`/deps/OpenSSL-for-iPhone/lib"
+   OBJCFLAGS="$OBJCFLAGS -DWITH_SSL -I`pwd`/deps/Build-OpenSSL-cURL/openssl/iOS-fat/include"
+   OBJCXXFLAGS="$OBJCXXFLAGS -DWITH_SSL -I`pwd`/deps/Build-OpenSSL-cURL/openssl/iOS-fat/include"
+   LDFLAGS="$LDFLAGS -L`pwd`/deps/Build-OpenSSL-cURL/openssl/iOS-fat/lib"
    LIBS="$LIBS -lssl -lcrypto"
 elif test "x${with_ssl}" != "xno"; then
    OBJCFLAGS="$OBJCFLAGS -DWITH_SSL -I$with_ssl/include"

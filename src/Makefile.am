@@ -8,7 +8,7 @@ liblinear_objc_la_OBJCFLAGS = \
 	-I$(top_srcdir)/deps/linear-cpp/deps/libtv/deps/libuv/include \
 	-I$(top_srcdir)/deps/linear-cpp/deps/msgpack/include \
 	-I$(top_srcdir)/deps/linear-cpp/include \
-	-I$(top_srcdir)/deps/OpenSSL-for-iPhone/include
+	-I$(top_srcdir)/deps/Build-OpenSSL-cURL/openssl/iOS-fat/include
 
 liblinear_objc_la_OBJCXXFLAGS = \
 	-I$(top_srcdir)/include \
@@ -16,7 +16,7 @@ liblinear_objc_la_OBJCXXFLAGS = \
 	-I$(top_srcdir)/deps/linear-cpp/deps/libtv/deps/libuv/include \
 	-I$(top_srcdir)/deps/linear-cpp/deps/msgpack/include \
 	-I$(top_srcdir)/deps/linear-cpp/include \
-	-I$(top_srcdir)/deps/OpenSSL-for-iPhone/include
+	-I$(top_srcdir)/deps/Build-OpenSSL-cURL/openssl/iOS-fat/include
 
 liblinear_objc_la_SOURCES = \
 	LinearAddrInfo.m \

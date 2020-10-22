@@ -54,12 +54,8 @@
 - (LinearSSLSocket *)createSocket:(NSString *)host port:(NSInteger)port {
   linear::SSLContext::Method method;
   switch (_sslctx.method) {
-  case LinearSSLTLSv1_1:
-    method = linear::SSLContext::TLSv1_1;
-    break;
-  case LinearSSLv23:
-  default:
-    method = linear::SSLContext::SSLv23;
+  case LinearTLS:
+    method = linear::SSLContext::TLS;
     break;
   }
   linear::SSLContext cppCtx(method);

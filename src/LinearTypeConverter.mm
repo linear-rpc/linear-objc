@@ -109,6 +109,9 @@ id any_to_id(const msgpack::object& from) {
   case msgpack::type::NEGATIVE_INTEGER:
     return [[NSNumber alloc] initWithLongLong:from.via.i64];
     break;
+  case msgpack::type::FLOAT32:
+    return [[NSNumber alloc] initWithFloat:from.via.f64];
+    break;
   case msgpack::type::FLOAT:
     return [[NSNumber alloc] initWithFloat:from.via.f64];
     break;

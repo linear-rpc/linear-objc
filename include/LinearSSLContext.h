@@ -4,10 +4,8 @@
 
 /** SSL Method Definitions */
 typedef NS_ENUM(NSInteger, LinearSSLMethod) {
-  /** OpenSSL::SSLv23_method */
-  LinearSSLv23,
-  /** OpenSSL::TLSv1_1_method */
-  LinearSSLTLSv1_1,
+  /** OpenSSL::TLS_method */
+  LinearTLS,
 };
 
 /** SSL Verify Mode Definitions */
@@ -26,7 +24,7 @@ typedef NS_ENUM(NSInteger, LinearSSLVerifyMode) {
 /**
    LinearSSLMethod
 
-   Default: LinearSSLv23
+   Default: LinearTLS
  */
 @property (nonatomic, assign) LinearSSLMethod method;
 /**

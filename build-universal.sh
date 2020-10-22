@@ -21,12 +21,16 @@ do
     if [ "`echo "$1" | grep "\--with-ssl="`" != "" ]; then
         COMMON_CONFIGURE_FLAGS="$COMMON_CONFIGURE_FLAGS $1"
     elif [ "`echo "$1" | grep "\--with-ssl"`" != "" ]; then
-        COMMON_CONFIGURE_FLAGS="$COMMON_CONFIGURE_FLAGS --with-ssl=`pwd`/deps/OpenSSL-for-iPhone"
+        COMMON_CONFIGURE_FLAGS="$COMMON_CONFIGURE_FLAGS --with-ssl=`pwd`/deps/Build-OpenSSL-cURL/openssl/iOS-fat"
     else
         COMMON_CONFIGURE_FLAGS="$COMMON_CONFIGURE_FLAGS $1"
     fi
     shift
 done
+
+if [ "`echo ${COMMON_CONFIGURE_FLAGS} | grep "\--with-ssl"`" == "" ]; then
+    COMMON_CONFIGURE_FLAGS="$COMMON_CONFIGURE_FLAGS --without-ssl"
+fi
 
 do_configure() {
     TARGET_ARCH=$1
@@ -54,6 +58,11 @@ do_configure() {
 	    TARGET_HOST_OPTION="--host=arm-apple-darwin"
 	    SDK_DIR="`$XCRUN -sdk iphoneos --show-sdk-path`"
 	    CFLAGS="-arch arm64 ${CFLAGS}"
+	    ;;
+	arm64e)
+	    TARGET_HOST_OPTION="--host=arm-apple-darwin"
+	    SDK_DIR="`$XCRUN -sdk iphoneos --show-sdk-path`"
+	    CFLAGS="-arch arm64e ${CFLAGS}"
 	    ;;
 	i386)
 	    TARGET_HOST_OPTION="--host=i386-apple-darwin"
@@ -89,8 +98,8 @@ do_configure() {
 # openssl
 if [ "`echo "$COMMON_CONFIGURE_FLAGS" | grep "\--with-ssl"`" != "" ]; then
     (
-        cd deps/OpenSSL-for-iPhone
-        ./build-libssl.sh
+        cd deps/Build-OpenSSL-cURL
+        ./build.sh
     )
 fi
 
