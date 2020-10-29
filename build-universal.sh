@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## settings
-SUPPORTED_ARCH="armv7 armv7s arm64 i386 x86_64"
+SUPPORTED_ARCH="arm64 arm64e i386 x86_64"
 COMMON_CFLAGS="-Os"
 ## end settings
 
