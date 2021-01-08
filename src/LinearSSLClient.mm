@@ -138,9 +138,43 @@
         CFRetain(ca_cert);
       }
 
+      // add ocsp Certificate revocation confirmation
+      if (_sslctx.ocspAvailable) {
+        CFArrayRef oldPolicies;
+        status = SecTrustCopyPolicies(trust, &oldPolicies);
+        if (status == errSecSuccess) {
+          SecPolicyRef revocationPolicy = SecPolicyCreateRevocation(kSecRevocationOCSPMethod | kSecRevocationRequirePositiveResponse);
+          NSArray *newPolicies = [(__bridge NSArray *)oldPolicies arrayByAddingObject:(__bridge id)revocationPolicy];
+          CFRelease(oldPolicies);
+          status = SecTrustSetPolicies(trust, (__bridge CFArrayRef)newPolicies);
+          if (status == errSecSuccess) {
+            status = SecTrustSetNetworkFetchAllowed(trust, true);
+          }
+        }
+
+        if (status != errSecSuccess) {
+          if (@available(iOS 11.3, *)) {
+            CFStringRef errorMessage = SecCopyErrorMessageString(status, NULL);
+            NSLog(@"[OCSP ERROR]: %@", (__bridge_transfer NSString *)errorMessage);
+          } else {
+            NSLog(@"[OCSP ERROR]: %ld", (long)status);
+          }
+
+          for (int i = 0; i < CFArrayGetCount(array); i++) {
+            CFRelease(CFArrayGetValueAtIndex(array, i));
+          }
+          CFRelease(array);
+          CFRelease(policy);
+          cppSSLSocket.Disconnect();
+          return;
+        }
+      }
+
       // validate certificates
       SecTrustResultType r = kSecTrustResultInvalid;
-      status  = SecTrustEvaluate(trust, &r);
+      status = SecTrustEvaluate(trust, &r);
+      NSLog(@"[INFO]: SecTrustEvaluate result is %@", [self debugStringWithSecTrustResultType:r]);
+
       if (_sslctx.cacert != NULL) {
         CFRelease(ca_cert);
       }
@@ -150,6 +184,7 @@
       CFRelease(array);
       CFRelease(policy);
       CFRelease(trust);
+
       if (status != noErr ||
           (r != kSecTrustResultProceed && r != kSecTrustResultUnspecified)) {
         NSLog(@"invalid server certificate");
@@ -171,6 +206,19 @@
     NSLog(@"BUG: invalid type of linear::SSLSocket");
     return;
   }
+}
+
+- (NSString *)debugStringWithSecTrustResultType:(SecTrustResultType) type {
+    switch(type) {
+      case kSecTrustResultProceed:                  return @"Proceed";
+      case kSecTrustResultUnspecified:              return @"Unspecified";
+      case kSecTrustResultDeny:                     return @"Deny";
+      case kSecTrustResultRecoverableTrustFailure:  return @"RecoverableTrustFailure";
+      case kSecTrustResultFatalTrustFailure:        return @"FatalTrustFailure";
+      case kSecTrustResultOtherError:               return @"OtherError";
+      case kSecTrustResultInvalid:                  return @"Invalid";
+      default:  return @"UnknownType";
+    }
 }
 
 @end

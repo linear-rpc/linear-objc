@@ -84,4 +84,11 @@ typedef NS_ENUM(NSInteger, LinearSSLVerifyMode) {
 */
 @property (nonatomic, copy) NSString *cacert;
 
+/**
+   @brief flag for whether to check certificate revocation by OCSP Responder.
+
+   @remarks If you want OCSP Responder to check for certificate revocation, specify YES (default is NO).
+*/
+@property (nonatomic) BOOL ocspAvailable;
+
 @end

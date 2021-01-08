@@ -12,6 +12,7 @@
     self.pkey = NULL;
     self.cipher = @"ALL:EECDH+HIGH:EDH+HIGH:+MEDIUM+HIGH:!EXP:!LOW:!eNULL:!aNULL:!MD5:!RC4:!ADH:!KRB5:!PSK:!SRP";
     self.cacert = NULL;
+    self.ocspAvailable = NO;
   }
   return self;
 }
